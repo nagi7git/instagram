@@ -1,0 +1,19 @@
+
+{% block title %} форма по добовлению Заказа {% endblock %}
+
+{% block content %}
+   <h1 align="center"></h1align><div class="features">
+        <h1>форма по добовлению Заказа </h1>
+        <form method = 'post'>
+            {% csrf_token %}
+            {{ form.as_p}} <br>
+            <span>{{ error }}</span>
+            <button class="btn btn-success" type="sumbit">Создать</button>
+        </form>
+        
+        {% if img_obj %}
+            <h3>Succesfully uploaded : {{img_obj.order}}</h3>
+            <img src="{{ img_obj.payment_receipt.url}}" alt="connect" style="max-height:300px">
+        {% endif %}
+    </div> </h1>
+{% endblock %}

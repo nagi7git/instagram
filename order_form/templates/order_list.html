@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  <h1>Order</h1>
+  <div class="row mb-3">
+    <div class="col-6">
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>order</th>
+        <th>size</th>
+        <th>nick_instagram</th>
+        <th>name</th>
+        <th>surname</th>
+        <th>gender</th>
+        <th>phone_number</th>
+        <th>phone_number2</th>
+        <th>payment_receipt</th>
+        <th>delivery_address</th>
+        <th>amount</th>
+        <th>order_date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in order %}
+      <tr>
+        <td>{{ order.order }}</td>
+        <td>{{ order.size }}</td>
+        <td>{{ order.nick_instagram }}</td>
+        <td>{{ order.name }}</td>
+        <td>{{ order.surname }}</td>
+        <td>{{ order.gender }}</td>
+        <td>{{ order.phone_number }}</td>
+        <td>{{ order.phone_number2 }}</td>
+        <td>{{ order.payment_receipt }}</td>
+        <td>{{ order.delivery_address }}</td>
+        <td>{{ order.amount }}</td>
+        <td>{{ order.order_date }}</td>
+        <td>
+          <form method="post" action="{% url 'form:order_delete' order.id %}" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="2">No locations found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %} 
